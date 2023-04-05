@@ -11,6 +11,9 @@ Y para cargar variables de contexto usando python-dotenv
 
 Requiere tener instalado el cliente Docker Desktop en local y tambien hacer esto: en el fichero ~/.docker/config.json change credsStore to credStore
 (ver https://stackoverflow.com/questions/67642620/docker-credential-desktop-not-installed-or-not-available-in-path )
+
+Se invoca la API de DOCKER HUB:
+https://docs.docker.com/docker-hub/api/latest/
 """
 
 print(" Se leen variables secretas desde fichero protegido...")
@@ -40,3 +43,11 @@ params = dict()  # ejemplo: {"id": [1, 2, 3], "userId":1}
 resp = requests.get(url=urlMisRepositorios, params=params)
 data = resp.json()  # Respuesta en un DICT
 print(data)
+
+
+# Se ve el contenido de CADA repositorio:
+print("Imagenes:")
+nombresRepositorios = []
+imagenes = [i for i in data.values() if i != None and 'name' in str(i)]
+for imagen in imagenes:
+    print(imagen)
