@@ -4,6 +4,7 @@ Si tengo alguna duda, puedo verlas rápidamente sin ir a Internet.
 """
 
 import argparse
+import numpy as np
 
 miVariableGlobal = 56  # global
 
@@ -68,6 +69,7 @@ def variablesTiposCastingsEtc():
 
 
 def tiposDedatos():
+    print("tiposDedatos...")
     x = "Hello World"  # str
     x = 20  # int
     x = 20.5  # float
@@ -92,6 +94,7 @@ def tiposDedatos():
 
 
 def cadenas():
+    print("cadenas...")
     # multilinea
     a = """Lorem ipsum dolor sit amet,
     consectetur adipiscing elit,
@@ -133,20 +136,187 @@ def cadenas():
 
     # Otras funciones
     midiccionario = {"name": "John", "country": "Norway"}
-    # mySeparator = "TEST"
-    # x = mySeparator.join(midiccionario)
-    # print(x)
+    mySeparator = "TEST"
+    x = mySeparator.join(midiccionario)
+    print(x)
+
+
+def otrosTiposDeDato():
+    print("otrosTiposDeDato...")
+    # Boolean
+    print(bool("Hola"))  # True
+    # False -->Son false: cadenas vacias, Listas vacías, numero 0, None...
+    print(bool(""))
+    print(3 > 1)
+
+    print(isinstance(200, int))  # comprueba si un numero es un INT
+
+
+def listas():
+    print("listas...")
+    # Lists: primer elemento tiene indice 0, tienen ORDEN, los elementos se añaden por detras (append), son mutables, permiten elementos duplicados
+    thislist = ["apple", "banana", "cherry"]
+    thislist.append("apple")
+    print(thislist)
+    # creada con el constructor explícito (dobles parentesis)
+    listaHeterogenea = list(("abc", 34, True, 40, "male"))
+    print(listaHeterogenea)
+    print(listaHeterogenea[-1])  # indices empezando por detrás
+    if "male" in listaHeterogenea:
+        print("Yes, 'male' is in the list")
+
+    listaHeterogenea[0] = "otro"  # Cada elemento es mutable
+    # Se pueden METER VARIOS elementos donde antes habia solo UNO!!!:
+    listaHeterogenea[1:2] = ["carlos", "laura"]
+    print(listaHeterogenea)
+
+    # y se pueden sustituir VARIOS elementos por UNO solo:
+    thislist = ["apple", "banana", "cherry"]
+    thislist[1:3] = ["watermelon"]
+    print(thislist)
+
+    thislist = ["apple", "banana", "cherry"]
+    thislist.insert(2, "watermelon")
+    print(thislist)
+
+    thislist = ["apple", "banana", "cherry"]
+    tropical = ["mango", "pineapple", "papaya"]
+    thislist.extend(tropical)
+    print(thislist)
+
+    # meter una tupla dentro de una lista
+    thislist = ["apple", "banana", "cherry"]
+    thistuple = ("kiwi", "orange")
+    thislist.extend(thistuple)  # mete CUALQUIER ITERABLE
+    print(thislist)
+    thislist.pop(1)  # quita un elemento segun el indice
+    print(thislist)
+    del thislist[0]  # borra un elemento
+    print(thislist)
+    thislist.clear()  # vacía la lista (sin borrarla)
+    del thislist  # borra la lista entera
+    if 'thislist' not in locals():
+        print("La lista no existe ya")
+
+    thislist = ["banana", "apple", "cherry"]
+    for x in thislist:
+        print(x)
+    for i in range(len(thislist)):
+        print(thislist[i])
+
+    # list comprehension: newlist = [expression for item in iterable if condition == True]
+    newlist = [x for x in thislist if "a" in x]
+    print(newlist)
+    newlist.sort(reverse=False)
+    print(newlist)
+
+
+def listasAvanzado():
+    print("listasAvanzado...")
+
+    def myfunc(n):
+        return abs(n - 50)
+
+    thislist = [100, 50, 65, 82, 23]
+    thislist.sort(key=myfunc)
+    print(thislist)
+
+    thislist = ["banana", "Orange", "Kiwi", "cherry"]
+    thislist.sort(key=str.lower)  # ordena case-insensitive
+    print(thislist)
+
+    # Para COPIAR el contenido de una lista en otra lista NUEVA, no se hace lista2=lista1 (eso apunta a la misma referencia), sino:
+    lista2 = thislist.copy()  # opcion1
+    lista3 = list(thislist)  # opcion2
+    print(lista2)
+    print(lista3)
+
+    concatenada = lista2+lista3  # nueva lista
+    lista2.extend(lista3)  # lista 2 ampliada
+    print(concatenada)
+    print(lista2)
+
+    # Meter/sacar indicando indice: insert, pop
+    # sacar indicando valor: remove
+
+
+def tuplas():  # son NO MUTABLES!!!!!!!!!!!
+    print("tuplas...")
+    # Tuples
+    thistuple = ("apple", "banana", "cherry",)  # termina en coma!!!
+    print(thistuple)
+    thistuple = ("apple",)  # termina en coma!!!
+    print(type(thistuple))
+    thistuple = ("apple")  # No es una tupla porque no termina en coma!!!
+    print(type(thistuple))
+    # puede contener elementos de varios tipos
+    tuple1 = ("abc", 34, True, 40, "male")
+    print(tuple1)
+    # note the double round-brackets
+    thistuple = tuple(("apple", "banana", "cherry"))
+    print(thistuple)
+
+    print("Como las TUPLAS son INMUTABLES, si queremos añadir elementos hay que convertirlas en listas o crear una nueva tupla con elementos añadidos:")
+    thistuple = ("apple", "banana", "cherry")
+    thistuple += ("orange",)  # termina en coma
+    print(thistuple)
+
+    print("Como las TUPLAS son INMUTABLES, si queremos borrar elementos hay que convertirlas en listas:")
+    y = list(thistuple)
+    y.remove("apple")
+    thistuple = tuple(y)
+    print(thistuple)
+
+# me llego en: https://www.w3schools.com/python/python_tuples_update.asp
+
+
+def sets():
+    print("sets...")
+    # Sets
+
+
+def diccionarios():
+    print("Dictionaries...")
+    # Dictionaries
+
+
+def operadores():
+    print("operadores...")
+    # https://docs.python.org/3/library/operator.html
+    print(11 % 1)  # modulo
+    print(10**2)  # exponente
+    print(51//2)  # Division y FLOOR
+
+    # MATRICES
+    a = np.array([[1, 0], [0, 1]])
+    b = np.array([[4, 1], [2, 2]])
+    productoMatrices = np.matmul(a, b)
+    # El operador @ es equivalente a la funcion np.matmul
+    productoMatrices2 = a @ b
+    print(productoMatrices)
+    print(productoMatrices2)
+
+    # Comparaciones de igualdad
+    print(2 == 3)
+    print(2 != 3)
 
 
 def main(parametros):
-    print("===== INICIO =====")
+    print("===== MAIN.INICIO =====")
     # variable global, creada dentro de una función. Exige poner global
     global unaNuevaVariableGlobal
     unaNuevaVariableGlobal = 100
     variablesTiposCastingsEtc()
     tiposDedatos()
     cadenas()
-    print("===== FIN =====")
+    otrosTiposDeDato()
+    operadores()
+    listas()
+    listasAvanzado()
+    tuplas()
+    sets()
+    diccionarios()
+    print("===== MAIN.FIN =====")
 
 
 # Si el código python se ejecuta desde un script con comando, se entra por aquí y se pueden capturar los parámetros fácilmente
