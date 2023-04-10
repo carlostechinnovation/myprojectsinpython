@@ -256,28 +256,183 @@ def tuplas():  # son NO MUTABLES!!!!!!!!!!!
     thistuple = tuple(("apple", "banana", "cherry"))
     print(thistuple)
 
-    print("Como las TUPLAS son INMUTABLES, si queremos añadir elementos hay que convertirlas en listas o crear una nueva tupla con elementos añadidos:")
+    print("Como las TUPLAS son INMUTABLES, si queremos AÑADIR elementos hay que convertirlas en listas o crear una nueva tupla con elementos añadidos:")
     thistuple = ("apple", "banana", "cherry")
     thistuple += ("orange",)  # termina en coma
     print(thistuple)
 
-    print("Como las TUPLAS son INMUTABLES, si queremos borrar elementos hay que convertirlas en listas:")
+    print("Como las TUPLAS son INMUTABLES, si queremos BORRAR elementos hay que convertirlas en listas:")
     y = list(thistuple)
     y.remove("apple")
     thistuple = tuple(y)
     print(thistuple)
 
-# me llego en: https://www.w3schools.com/python/python_tuples_update.asp
+    print("Volcar tupla en variables (se llama UNPACKING) y se puede usar el asterisco para coger los restantes:")
+    fruits = ("apple", "banana", "cherry", "strawberry", "raspberry")
+    (green, yellow, *otros) = fruits
+    print(green)
+    print(yellow)
+    print(otros)
+    (primero, *intermedios, ultimo) = fruits
+    print(primero)
+    print(intermedios)
+    print(ultimo)
+
+    print("Bucle para ver elementos:")
+    for i in range(len(fruits)):
+        print(fruits[i])
+
+
+def tuplasAvanzado():
+    print("tuplasAvanzado...")
+    print("JOIN:")
+    tuple1 = ("a", "b", "c")
+    tuple2 = (1, 2, 3)
+    tuple3 = tuple1 + tuple2
+    print(tuple3)
+
+    print("Repetir elementos (duplica, triplica...):")
+    fruits = ("apple", "banana", "cherry")
+    mytuple = fruits * 2
+    print(mytuple)
 
 
 def sets():
-    print("sets...")
-    # Sets
+    print("Sets...")
+    print("No garantizan el orden de los elementos. Sus elementos se pueden meter/sacar, pero no modificar. Los elementos DUPLICADOS se ignoran (y los elementos True y 1 se consideran iguales).")
+    thisset = {"apple", "banana", "cherry", "apple", True, 1}
+    print(thisset)
+    thisset = set(("apple", "banana", "cherry"))  # Constructora explícita
+    print(thisset)
+
+    print("Recorrer elementos del set:")
+    for x in thisset:
+        print(x)
+    print("Comprobar si el set contiene un elemento:")
+    print("banana" in thisset)
+
+    print("Añadir un elemento (ADD) y añadir varios elementos (UPDATE):")
+    thisset = {"apple", "banana", "cherry"}
+    thisset.add("orange")
+    # Esto puede ser cualquier iterable: set, list...
+    tropical = list(("pineapple", "mango", "papaya"))
+    thisset.update(tropical)
+    print(thisset)
+
+    print("Quitar elementos con remove (lanza error si no existe) o discard (no lanza error si no existe):")
+    thisset.discard("banana")
+    print(thisset)
+    # pop() quita un elemento al azar y lo devuelve
+
+    print("Vaciar con clear y borrar con del:")
+    thisset.clear()
+    del thisset
+
+
+def setsAvanzado():
+    print("Juntar dos sets con union() o update():")
+    set1 = {"a", "b", "c"}
+    set2 = {1, 2, 3}
+    set3 = set1.union(set2)  # UNION devuelve un NUEVO set
+    print(set3)
+    set1.update(set2)  # UPDATE actualiza el set, no crea uno nuevo
+    print(set1)
+
+    print("Extraer interseccion de dos sets (elementos compartidos):")
+    x = {"manzana", "platano", "cdereza"}
+    mascara = {"google", "microsoft", "manzana"}
+    x.intersection_update(mascara)  # Set x se queda con lo filtrado
+    print(x)
+    x = {"manzana", "platano", "cdereza"}
+    z = x.intersection(mascara)
+    print(z)
+
+    print("La operacion NOT IN hecha con sets:")
+    x = {"apple", "banana", "cherry"}
+    y = {"google", "microsoft", "apple"}
+    x.symmetric_difference_update(y)
+    print(x)
+    x = {"apple", "banana", "cherry", True}
+    y = {"google", 1, "apple", 2}
+    z = x.symmetric_difference(y)  # True y 1 son lo mismo
+    print(z)
+
+    # isdisjoint()	Returns whether two sets have a intersection or not
+    # issubset()	Returns whether another set contains this set or not
+    # issuperset()	Returns whether this set contains another set or not
 
 
 def diccionarios():
     print("Dictionaries...")
-    # Dictionaries
+    print("Hasta python 3.6 eran desordenados. Desde python 3.7 garantizan el ORDEN.")
+    thisdict = {"brand": "Ford",  "model": "Mustang",  "year": 1964,
+                "year": 2020,
+                "colors": ["red", "white", "blue"]}  # pueden contener listas, etc
+    print("No permiten claves duplicadas; si aparecen, se coge el ultimo valor encontrado (ej. year=2020)")
+    print(thisdict)
+    print(thisdict["brand"])  # buscar por clave
+    print(thisdict.get("brand"))  # buscar por clave
+    print(len(thisdict))
+    claves = thisdict.keys()
+    print(claves)
+
+    print("Constructora (no usa doble parentesis):")
+    thisdict = dict(name="John", age=36, country="Norway")
+    print(thisdict)
+
+    print("La referencia a las CLAVES se actualiza (añade nueva clave):")
+    claves = thisdict.keys()
+    print(claves)
+    thisdict["propietario"] = "Carlos"  # NUEVA clave añadida
+    print(claves)
+
+    print("La referencia a los VALORES se actualiza:")
+    valores = thisdict.values()
+    print(valores)
+    thisdict["name"] = "Ferrari"
+    print(valores)
+
+    print("Si de trae la lista de elementos (ITEMS) y hay un cambio posterior, se actualiza (puntero por REFERENCIA):")
+    elementos = thisdict.items()
+    print(elementos)
+    thisdict["name"] = "Mercedes"
+    print(elementos)
+    print("name" in thisdict)
+
+    print("Update:")
+    thisdict.update({"name": "BMW"})
+    print(thisdict)
+
+    print("Sacar elementos --> pop() por clave, popitem() al azar y del por clave")
+    thisdict.pop("name")
+    print(thisdict)
+    del thisdict["propietario"]
+    print(thisdict)
+    print("vaciar diccionario -->clear()")
+    print("borrar diccionario -->del")
+
+    print("Itera claves:")
+    for x in thisdict:
+        print(x)
+    print("iterar valores:")
+    for x in thisdict:
+        print(thisdict[x])
+    print("iterar por claves y valores:")
+    for x, y in thisdict.items():
+        print(x, y)
+
+    print("Utilizar un nuevo diccionario que sea copia del primero (no referencia):")
+    mydict = thisdict.copy()
+    mydict = dict(thisdict)  # Esta es otra forma equivalente
+    print(mydict)
+
+    print("Diccionarios ANIDADOS: un diccionario contiene varios diccionarios:")
+    myfamily = {
+        "child1": {"name": "Emil", "year": 2004},
+        "child2": {"name": "Tobias", "year": 2007},
+        "child3": {"name": "Linus", "year": 2011}
+    }
+    print("Nombre del hijo 2: " + myfamily["child2"]["name"])
 
 
 def operadores():
@@ -301,6 +456,55 @@ def operadores():
     print(2 != 3)
 
 
+def buclesFuncionesEtc():
+    print("buclesFuncionesEtc...")
+    print("if...else:")
+    if (5 != 3 and 3 == 3):
+        print("if-else dentro")
+    elif (3 < 4 or not 3 == 7):
+        print("if-else dentro2")
+    else:
+        print("otro")
+
+    print("if...else comprimido:")
+    print("A") if 3 > 5 else print("B")
+    print("A") if 3 > 5 else print("=") if 2 == 2 else print("B")
+
+    print("saltar con pass:")
+    if 5 < 3:
+        pass
+
+    print("bucles:")
+    i = 1
+    while i < 6:
+        print(i)
+        i += 1
+        if i > 3:
+            # continue #itera, sin leer lo siguiente que haya
+            break
+    else:  # se ejecuta despues del while!!!!!
+        print("Al salir del while")
+
+
+def funcionPrueba1(*kids):
+    print("The youngest child is " + kids[2])
+    return 1000  # se puede devolver un valor
+
+
+def funcionPrueba2(child3="Carlos", child2="", child1=""):  # con valor default
+    print("The youngest child is " + child3)
+
+
+def funcionPrueba3(**kid):
+    print("His last name is " + kid["lname"])
+
+
+def funcionVacia():
+    pass  # se pone pass para evitar q haya error
+
+
+# me llego por aqui https://www.w3schools.com/python/python_lambda.asp
+
 def main(parametros):
     print("===== MAIN.INICIO =====")
     # variable global, creada dentro de una función. Exige poner global
@@ -314,8 +518,15 @@ def main(parametros):
     listas()
     listasAvanzado()
     tuplas()
+    tuplasAvanzado()
     sets()
+    setsAvanzado()
     diccionarios()
+    buclesFuncionesEtc()
+    funcionPrueba1("Emil", "Tobias", "Linus")  # numero variable de parametros
+    funcionPrueba2(child1="Emil", child2="Tobias",
+                   child3="Linus")  # parametros clave=valor
+    funcionPrueba3(fname="Tobias", lname="Refsnes")
     print("===== MAIN.FIN =====")
 
 
