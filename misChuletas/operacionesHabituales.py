@@ -521,21 +521,21 @@ def listasUsadasComoArrays():
 
 
 class Persona:
-    def __init__(self, name, age):  # INIT (constructora): el primer parametro siempre es self
-        self.name = name
+    def __init__(self, nombre, age):  # INIT (constructora): el primer parametro siempre es self
+        self.nombre = nombre
         self.age = age
 
     def __str__(self):  # STR: el primer parametro siempre es self
-        return f"{self.name}({self.age})"
+        return f"{self.nombre}({self.age})"
 
     def printarNombre(self):  # funcion custom: el primer parametro siempre es self
-        print("Hello my name is " + self.name)
+        print("Hello my name is " + self.nombre)
 
 
 class Estudiante(Persona):  # herencia
-    def __init__(self, fname, lname):
-        super().__init__(fname, 0)  # constructora del padre
-        self.estudios = "infantil"
+    def __init__(self, nombre, apellidos, edad, estudios):
+        super().__init__(nombre, edad)  # constructora del padre
+        self.estudios = estudios
 
     def printarNombre(self):  # Sobreescribe la funcion del padre
         print("Estudiante: " + self)
@@ -544,7 +544,7 @@ class Estudiante(Persona):  # herencia
 def ejemplosConClases():
     print("Clases...")
     p1 = Persona("John", 36)  # usa __init__()
-    print(p1.name)
+    print(p1.nombre)
     print(p1.age)
     print(p1)  # usa __str__()
     p1.printarNombre()
@@ -557,8 +557,101 @@ def ejemplosConClases():
 
 def herencia():
     print("Herencia...")
-    e1 = Estudiante(fname="pepe", lname="viyuela")
+    e1 = Estudiante(nombre="pepe", apellidos="viyuela",
+                    edad=1, estudios="infantil")
     print(e1)
+
+
+class MiIteradorDeNumeros:
+    def __iter__(self):
+        self.a = 1  # Inicializado
+        return self
+
+    def __next__(self):
+        if self.a <= 3:
+            x = self.a
+            self.a += 1
+            return x
+        else:
+            raise StopIteration
+
+
+def iteradores():
+    print("iteradores (objetos que implementan metodos __iter__ y __next__)...")
+
+    print("Objetos iterABLES de los que obtenemos objetos iteradores:")
+    miTupla = ("apple", "banana", "cherry")
+    miIterador = iter(miTupla)
+
+    print("usando next:")
+    print(next(miIterador))
+    print(next(miIterador))
+    print(next(miIterador))
+
+    print("usando for:")
+    for x in miTupla:
+        print(x)
+
+    print("Ejemplo de iterador custom, que genera numeros y para cuando es >=3:")
+    miObjeto = MiIteradorDeNumeros()
+    iterador = iter(miObjeto)
+    for x in iterador:
+        print(x)
+
+
+class Vehiculo:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def move(self):
+        print("Move!")
+
+
+class Car(Vehiculo):
+    pass
+
+
+class Boat(Vehiculo):
+    def move(self):
+        print("Sail!")
+
+
+class Plane(Vehiculo):
+    def move(self):
+        print("Fly!")
+
+
+def polimorfismo():
+    print("Polimorfismo de funciones...")
+    print("Un ejemplo es la funcion len(), que calcula la longitud o numero de elementos de muchos tipos de objetos.")
+    print(len("hola"))  # caracteres de una cadena
+    print(len(("apple", "banana", "cherry")))  # elementos de una tupla
+
+    print("Polimorfismo de clases (y herencia)...")
+    car1 = Car("Ford", "Mustang")  # Create a Car class
+    boat1 = Boat("Ibiza", "Touring 20")  # Create a Boat class
+    plane1 = Plane("Boeing", "747")  # Create a Plane class
+    for x in (car1, boat1, plane1):
+        x.move()
+
+
+def scope():
+    print("scope...")
+    print("local (intrafuncion) y global (fuera de funcion) scope. Cuidado porque dos variables con el mismo nombre pueden convivir. La palabra reservada 'global' fuerza a que sea global")
+
+    def miFuncion1():
+        global x
+        x = 200
+
+    print("Antes de invocar la funcion, la variable no existe x. ¿Existe?=" +
+          str('x' in locals()))
+    miFuncion1()
+    print("Despues de invocar la funcion, la variable es global y vale: x="+str(x))
+
+
+def modules():
+    print("modules (liberias, paquetes)...")
 
 
 def main(parametros):
@@ -588,6 +681,10 @@ def main(parametros):
     listasUsadasComoArrays()
     ejemplosConClases()
     herencia()
+    iteradores()
+    polimorfismo()
+    scope()
+    modules()
 
     print("===== MAIN.FIN =====")
 
