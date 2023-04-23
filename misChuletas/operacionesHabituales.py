@@ -652,6 +652,25 @@ def scope():
 
 def modules():
     print("modules (liberias, paquetes)...")
+    import miModulo as mm
+    mm.greeting("Carlos")
+
+    a = mm.person1["age"]
+    print(a)
+
+    import platform  # este es un modulo built-in que se carga en el environment base
+    print(str(platform.system()))
+    print("Las funciones y variables dentro del modulo miModulo son:")
+    print(dir(mm))
+
+    from miModulo import person1 as diccionarioP1  # importar solo el diccionario
+    print(diccionarioP1["age"])  # aqui no hay que poner mm. ni miModulo.
+
+
+def fechas():
+    print("fechas...")
+
+    # https://www.w3schools.com/python/python_datetime.asp
 
 
 def main(parametros):
@@ -685,6 +704,7 @@ def main(parametros):
     polimorfismo()
     scope()
     modules()
+    fechas()
 
     print("===== MAIN.FIN =====")
 
