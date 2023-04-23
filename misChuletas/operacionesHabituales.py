@@ -503,7 +503,63 @@ def funcionVacia():
     pass  # se pone pass para evitar q haya error
 
 
-# me llego por aqui https://www.w3schools.com/python/python_lambda.asp
+def funcionesLambda():
+    print("funcionesLambda...")
+    def miFuncionLambda(a, b): return a * b
+    print(miFuncionLambda(5, 6))
+
+
+def listasUsadasComoArrays():
+    print("listasUsadasComoArrays...")
+    cars = ["Ford", "Volvo", "BMW"]
+    numElementos = len(cars)
+    cars.append("Honda")
+    cars.pop(1)
+    # cars.remove("Volvo")
+    for x in cars:
+        print(x)
+
+
+class Persona:
+    def __init__(self, name, age):  # INIT (constructora): el primer parametro siempre es self
+        self.name = name
+        self.age = age
+
+    def __str__(self):  # STR: el primer parametro siempre es self
+        return f"{self.name}({self.age})"
+
+    def printarNombre(self):  # funcion custom: el primer parametro siempre es self
+        print("Hello my name is " + self.name)
+
+
+class Estudiante(Persona):  # herencia
+    def __init__(self, fname, lname):
+        super().__init__(fname, 0)  # constructora del padre
+        self.estudios = "infantil"
+
+    def printarNombre(self):  # Sobreescribe la funcion del padre
+        print("Estudiante: " + self)
+
+
+def ejemplosConClases():
+    print("Clases...")
+    p1 = Persona("John", 36)  # usa __init__()
+    print(p1.name)
+    print(p1.age)
+    print(p1)  # usa __str__()
+    p1.printarNombre()
+
+    # cambiar o borrar propidades de objetos:
+    p1.age = 40
+    del p1.age
+    del p1  # borrar el objeto entero
+
+
+def herencia():
+    print("Herencia...")
+    e1 = Estudiante(fname="pepe", lname="viyuela")
+    print(e1)
+
 
 def main(parametros):
     print("===== MAIN.INICIO =====")
@@ -527,6 +583,12 @@ def main(parametros):
     funcionPrueba2(child1="Emil", child2="Tobias",
                    child3="Linus")  # parametros clave=valor
     funcionPrueba3(fname="Tobias", lname="Refsnes")
+    funcionVacia()
+    funcionesLambda()
+    listasUsadasComoArrays()
+    ejemplosConClases()
+    herencia()
+
     print("===== MAIN.FIN =====")
 
 
