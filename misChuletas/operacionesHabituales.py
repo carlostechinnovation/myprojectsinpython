@@ -669,15 +669,96 @@ def modules():
 
 def fechas():
     print("fechas...")
+    import datetime
+    x = datetime.datetime.now()
+    print(x)
+    print(x.year)
+    print(x.strftime("%A"))
 
-    # https://www.w3schools.com/python/python_datetime.asp
+    z = datetime.datetime(2020, 5, 17)
+    print(z)
+    print(z.strftime("%B"))
 
+
+def otros():
+    print("Math...")
+    y = max(5, 10, 25)
+    x = abs(-7.25)
+    z = pow(4, 3)
+    print(z)
+
+    import math
+    x = math.sqrt(64)
+    print(x)
+
+    print("RegEx (expresiones regulares)...")
+    import re
+    txt = "The rain in Spain"
+    x = re.search("^The.*Spain$", txt)
+    print(x)
+    # returns a tuple containing the start-, and end positions of the match
+    print(x.span())
+    print(x.string)
+    print(x.group())
+
+    varios = re.findall("ai", txt)
+    print(varios)
+
+
+def operacionesBasicasConPip():
+    print("pip...")
+    # pip --version
+    # pip install paquete
+    # pip uninstall paquete
+    # pip list
+
+
+def gestionExcepciones():
+    print("gestionExcepciones...")
+    try:
+        print("Hello")
+    except:
+        print("Something went wrong")
+    else:
+        print("Solo si no ha habido NINGUNA excepcion")
+
+    try:
+        print(x)
+    except:
+        print("Something went wrong")
+    finally:
+        print("Se ejecuta finally haya habido error o no.")
+
+    x = +1
+    if x < 0:
+        raise Exception("Sorry, no numbers below zero")
+    if not type(x) is int:
+        raise TypeError("Only integers are allowed")
+
+def cadenas():
+    print("cadenas...")
+    quantity = 3
+    itemno = 567
+    price = 49
+    myorder = "I want {0} pieces of item number {1} for {2:.2f} dollars."
+    print(myorder.format(quantity, itemno, price))
+
+    myorder = "I have a {carname}, it is a {model}."
+    print(myorder.format(carname = "Ford", model = "Mustang"))
+    
+    
+    
 
 def main(parametros):
     print("===== MAIN.INICIO =====")
+
     # variable global, creada dentro de una función. Exige poner global
     global unaNuevaVariableGlobal
     unaNuevaVariableGlobal = 100
+
+    username = input("Escribe tu usuario: ")
+    print("Username is: " + username)
+
     variablesTiposCastingsEtc()
     tiposDedatos()
     cadenas()
@@ -705,6 +786,10 @@ def main(parametros):
     scope()
     modules()
     fechas()
+    otros()
+    operacionesBasicasConPip().
+    gestionExcepciones()
+    cadenas()
 
     print("===== MAIN.FIN =====")
 
