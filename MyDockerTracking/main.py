@@ -17,7 +17,7 @@ https://docs.docker.com/docker-hub/api/latest/
 """
 
 print(" Se leen variables secretas desde fichero protegido...")
-PATH_FICHERO_CLAVES = "C:/DATOS/CLAVES_NOBORRAR/MyDockerTracing_claves.env"
+PATH_FICHERO_CLAVES = "C:/DATOS/CLAVES_NOBORRAR/MyDockerTracking_claves.env"
 # cargando variables de entorno
 dotenv.load_dotenv(PATH_FICHERO_CLAVES)
 miusuario = os.getenv('miusuario')

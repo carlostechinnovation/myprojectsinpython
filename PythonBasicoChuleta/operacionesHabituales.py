@@ -21,9 +21,14 @@ miVariableGlobal = 56  # global
 
 
 def procesarParametros():
+    """Lee los parámetros escritos por la entrada estandar en el script.
+
+    Returns:
+        Namespace: Conjunto de parametros recogidos.
+    """
     parser = argparse.ArgumentParser(
         description='Parámetros de entrada del script con operaciones habituales')
-    parser.add_argument('--foo', help='foo help')
+    parser.add_argument('--nuevocampo', help='Explicacion del nuevo campo')
     args = parser.parse_args()
     return args
 
@@ -735,6 +740,7 @@ def gestionExcepciones():
     if not type(x) is int:
         raise TypeError("Only integers are allowed")
 
+
 def cadenas():
     print("cadenas...")
     quantity = 3
@@ -744,13 +750,13 @@ def cadenas():
     print(myorder.format(quantity, itemno, price))
 
     myorder = "I have a {carname}, it is a {model}."
-    print(myorder.format(carname = "Ford", model = "Mustang"))
-    
-    
-    
+    print(myorder.format(carname="Ford", model="Mustang"))
+
 
 def main(parametros):
     print("===== MAIN.INICIO =====")
+
+    print(parametros.nuevocampo)
 
     # variable global, creada dentro de una función. Exige poner global
     global unaNuevaVariableGlobal
@@ -787,7 +793,7 @@ def main(parametros):
     modules()
     fechas()
     otros()
-    operacionesBasicasConPip().
+    operacionesBasicasConPip()
     gestionExcepciones()
     cadenas()
 
