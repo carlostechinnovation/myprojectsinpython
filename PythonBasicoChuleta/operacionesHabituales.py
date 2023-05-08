@@ -753,6 +753,32 @@ def cadenas():
     print(myorder.format(carname="Ford", model="Mustang"))
 
 
+def ficheros():
+    print("ficheros...")
+    # f = open("RUTA", "rt")
+    # rawx -->read (error si no existe), append (crea si no existe), write (crea si no existe), create (error si existe)
+    # tb --> text binary
+    # print(f.readline()) #leer linea
+    # f.close()
+
+    # borrar fichero
+    import os
+    if os.path.exists("demofile.txt"):
+        os.remove("demofile.txt")
+    else:
+        print("El fichero no existe. No se puede borrar.")
+
+    # borrar folder
+    # os.rmdir("DIRECTORIO") #el directorio debe estar vacio
+
+
+def peticionesRestHTTP():
+    print("peticionesRestHTTP...")
+    import requests
+    x = requests.get('https://w3schools.com/python/demopage.htm')
+    print(x.text)
+
+
 def main(parametros):
     print("===== MAIN.INICIO =====")
 
@@ -796,6 +822,8 @@ def main(parametros):
     operacionesBasicasConPip()
     gestionExcepciones()
     cadenas()
+    ficheros()
+    peticionesRestHTTP()
 
     print("===== MAIN.FIN =====")
 
