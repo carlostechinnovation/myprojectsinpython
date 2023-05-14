@@ -1,3 +1,8 @@
-pip install pyspark
-pip install pytest
-pip install pytest-xdist
+name: envpyspark320
+dependencies:
+  - python=3.7
+  - pip:
+    - pytest
+    - pytest-xdist
+    - pyspark==3.2.0
+

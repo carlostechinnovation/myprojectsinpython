@@ -1,14 +1,22 @@
 {
-    // Use IntelliSense para saber los atributos posibles.
-    // Mantenga el puntero para ver las descripciones de los existentes atributos.
-    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        {
+            "name": "Prueba002",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\PysparkPruebas\\tests\\test_pysparkPrueba002.py",
+            //Explicado en: https://morioh.com/p/902be5907131
+            "windows": {
+                "python": "^\"\\${env:SPARK_HOME}/bin/spark-submit.cmd\""
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
         {
             "name": "Python: attach using process ID",
             "type": "python",
             "request": "attach",
-            "name": "Attach by Process ID",
             "processId": "${command:pickProcess}",
             "justMyCode": true
         },
