@@ -74,7 +74,8 @@ def main():
     lecturaEscrituraFicheroLocal(miSesionSpark, sc)
     # streamingLeyendoSocket(miSesionSpark)
     # streamingLeyendoKafka(miSesionSpark)
-
+    
+    miSesionSpark.stop()
     print("Pyspark pruebas - FIN")
 
 

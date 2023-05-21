@@ -5,4 +5,3 @@ dependencies:
     - pytest
     - pytest-xdist
     - pyspark==3.2.0
-

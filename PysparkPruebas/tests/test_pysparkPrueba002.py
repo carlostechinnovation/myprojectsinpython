@@ -32,6 +32,6 @@ def test_read_csv(spark_session):
     pathFicheroTest2 = os.path.join(os.path.dirname(__file__), "recursos/prueba.txt")
     df2 = psp002.read_csv(spark_session, pathFicheroTest2)
     
-    df2.createOrReplaceTempView("parquetFile")
-    tuesdaycrimes = spark_session.sql("SELECT LENGTH(CAMPO) - LENGTH(REPLACE(CAMPO, ' ', ''))+1 FROM parquetFile")
-    print(tuesdaycrimes.show())
+    df2.createOrReplaceTempView("tablatemp")
+    dfSeleccion = spark_session.sql("SELECT CAMPO, LENGTH(CAMPO) AS campo_longitud FROM tablatemp")
+    print(dfSeleccion.show())
