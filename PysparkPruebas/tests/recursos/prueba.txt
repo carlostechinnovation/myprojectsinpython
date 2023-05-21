@@ -1,0 +1,9 @@
+CAMPO
+hola esta es una prueba
+para usar pyspark
+desde python. Queremos contar palabras, etc
+Además, soportar caracteres como áéíóú y la ñ de España
+
+
+
+También saber si salta líneas

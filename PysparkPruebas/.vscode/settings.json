@@ -3,5 +3,10 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.formatting.provider": "none",
+    "python.defaultInterpreterPath": "C:\\Users\\casa\\.msvscode.hdinsight\\hdinsightJupyter\\Scripts\\python.exe"
 }
