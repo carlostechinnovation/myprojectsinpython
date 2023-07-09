@@ -1,2 +1,4 @@
-# myprojectsinpython
-Proyectos de pruebas en lenguaje Python
+# Repositorio myprojectsinpython
+
+Proyectos piloto en lenguaje Python:
+1. 
