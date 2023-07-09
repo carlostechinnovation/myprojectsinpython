@@ -45,18 +45,17 @@ def procesarPlaylist(playlistUrl, modo):
             for character in characters_to_remove:
                 tituloFichero = tituloFichero.replace(character, "")
 
-            tituloFichero = tituloFichero[0:100] + \
-                ".mp4"  # substring y extension
+            tituloFichero = tituloFichero[0:100]  # substring sin extension
         except:
             print("ERROR al extraer el nombre del video. Se pone un nombre por defecto")
 
         print("Descargando: " + tituloFichero)
         if (modo == "SOLO_AUDIO"):
             video.streams.filter(only_audio=True).first().download(
-                output_path=pathCarpeta, filename=tituloFichero, skip_existing=True, max_retries=2)
+                output_path=pathCarpeta, filename=tituloFichero+".mp3", skip_existing=True, max_retries=2)
         elif (modo == "AUDIO_Y_VIDEO"):
             video.streams.first().download(output_path=pathCarpeta,
-                                           filename=tituloFichero, skip_existing=True, max_retries=2)
+                                           filename=tituloFichero+".mp4", skip_existing=True, max_retries=2)
         else:
             print("ERROR: el MODO es incorrecto. Revisar. Saliendo...")
             # exit()
