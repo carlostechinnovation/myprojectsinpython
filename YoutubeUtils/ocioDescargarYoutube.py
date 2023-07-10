@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 PARAM_MODO = "SOLO_AUDIO"         # SOLO_AUDIO, AUDIO_Y_VIDEO
-PARAM_PATH_DIRECTORIO = "D:\\"    # Directorio local donde se descarga
+PARAM_PATH_DIRECTORIO = "C:\\DATOS\\MUSICA_YOUTUBE\\"    # Directorio local donde se descarga
 
 print("PARAM_MODO=" + PARAM_MODO)
 print("PARAM_PATH_DIRECTORIO=" + PARAM_PATH_DIRECTORIO)
@@ -68,7 +68,7 @@ if __name__ == '__main__':
 
     # Lista de playlists de Youtube
     misPlaylists = [  # 'https://www.youtube.com/playlist?list=PL0uH5v2iPsYLYdo-1Egm8UK9YBmCibPCz',
-        # 'https://www.youtube.com/playlist?list=PLD4932A345F3C12CA',
+         'https://www.youtube.com/playlist?list=PLD4932A345F3C12CA',
         # 'https://www.youtube.com/playlist?list=PL0uH5v2iPsYIn8o2huo7_kjiaF9sAPsBm',
         # 'https://www.youtube.com/playlist?list=PLFEC727ABF3D001A3',
         # 'https://www.youtube.com/playlist?list=PL0uH5v2iPsYKP72T5uybzlLfzM-g6RIwJ',

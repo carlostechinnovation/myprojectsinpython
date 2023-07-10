@@ -1,0 +1,6 @@
+# conda env create -f entorno.yml
+name: envyoutubeutils37
+dependencies:
+  - python=3.7
+  - pip:
+    - pytube
