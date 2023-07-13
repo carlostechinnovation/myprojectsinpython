@@ -1,0 +1,8 @@
+# conda env create -f entorno.yml
+name: envpy39
+dependencies:
+  - python=3.9
+  - pip:
+    - aws-shell
+    - boto3
+    - pandas
