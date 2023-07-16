@@ -19,8 +19,27 @@ def verify_email_identity(destino, region):
     print(response)
 
 
+def send_email_with_ses(sender_email, recipient_email, subject, body_text):
+    # Create an AWS SES client
+    ses_client = boto3.client('ses')
+
+    # Send the email
+    response = ses_client.send_email(
+        Source=sender_email,
+        Destination={'ToAddresses': [recipient_email]},
+        Message={
+            'Subject': {'Data': subject},
+            'Body': {'Text': {'Data': body_text}}
+        }
+    )
+
+    # Return the response
+    return response
+
+
 def send_html_email(origen, destinos, region):
     print("ENVIO TIPO 1 (html)....")
+
     ses_client = boto3.client("ses", region_name=region)
     CHARSET = "UTF-8"
     HTML_EMAIL_CONTENT = """
@@ -85,9 +104,14 @@ def send_email_with_attachment(origen, destinos, region):
 
 
 if __name__ == '__main__':
+
+    boto3.set_stream_logger('botocore', level='INFO')
+
     origen = "carlosandresgarcia1986@gmail.com"
-    destinos = ["carlos.ing.especialista@gmail.com",
-                "carlosandresgarcia1986@hotmail.com",]
+    destinos = ["carlosandresgarcia1986@hotmail.com",
+                # "luisandresgarcia@gmail.com",
+                # "fcacereslau@hotmail.com",
+                ]
     region = "eu-north-1"
 
     # ANTES DE ENVIAR, hay que verificar ORIGEN y DESTINOS
@@ -95,5 +119,11 @@ if __name__ == '__main__':
     for destino in destinos:
         verify_email_identity(destino, region)
 
-    # send_html_email(origen, destinos, region)
-    send_email_with_attachment(origen, destinos, region)
+    # EMAILS de VARIOS TIPOS:
+    # response = send_email_with_ses(
+    #     origen, destinos, "Mi asunto de pruebas", "Hola, esto es una prueba.")
+    # print(response)
+
+    send_html_email(origen, destinos, region)
+
+    # send_email_with_attachment(origen, destinos, region)

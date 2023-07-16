@@ -1,0 +1,31 @@
+# COMANDO: ansible-playbook -i ansible/hosts/inventory.yaml configurar_servidor.yaml
+# Para instalar ansible:
+# sudo apt update
+# sudo apt install ansible
+# ansible --version
+---
+- name: Instalar Miniconda
+  hosts: "tag_perfil_normal"
+  become: true
+
+  vars:
+    miniconda:
+      url: https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+  tasks:
+    - name: Descargar instalador de miniconda (gestor de paquetes)
+      get_url:
+        url: "{{ {{ miniconda.url }} }}"
+        dest: /tmp/miniconda.sh
+
+    - name: Run Miniconda installer
+      command: bash /tmp/miniconda.sh -b -p $HOME/miniconda
+
+    - name: Add Miniconda binaries to PATH
+      lineinfile:
+        path: ~/.bashrc
+        line: 'export PATH="$HOME/miniconda/bin:$PATH"'
+        state: present
+
+    - name: Refresh shell session
+      shell: source ~/.bashrc

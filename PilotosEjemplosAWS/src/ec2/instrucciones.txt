@@ -1,0 +1,6 @@
+Crear una imagen docker con nginx (servidor web http) dentro de una instancia EC2:
+https://ruhulmus.medium.com/create-docker-image-with-nginx-on-aws-ec2-instance-81802be83629
+
+
+Configurar HTTPS en el servidor web nginx en la instancia EC2, usando docker y certbot:
+https://www.c-sharpcorner.com/article/setup-https-for-nginx-on-aws-ec2-linux-instance-using-docker-and-certbot/
