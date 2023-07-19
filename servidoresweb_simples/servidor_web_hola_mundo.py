@@ -1,7 +1,7 @@
 import http.server
 import socketserver
 
-PORT = 
+PORT = 8000
 
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
@@ -11,6 +11,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes("Hello, World!", "utf8"))
         return
+
 
 Handler = MyHttpRequestHandler
 
